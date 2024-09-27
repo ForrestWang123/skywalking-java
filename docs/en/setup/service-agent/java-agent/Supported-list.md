@@ -17,7 +17,7 @@ metrics based on the tracing data.
   * [Jetty Server](http://www.eclipse.org/jetty/) 9.x -> 11.x
   * [Spring WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) 5.x (Optional¹) -> 6.x (Optional¹)
   * [Undertow](http://undertow.io/)  1.3.0.Final -> 2.0.27.Final
-  * [RESTEasy](https://resteasy.github.io/)  3.1.0.Final -> 6.2.4.Final
+  * [RESTEasy](https://resteasy.dev/)  3.1.0.Final -> 6.2.4.Final
   * [Play Framework](https://www.playframework.com/) 2.6.x -> 2.8.x
   * [Light4J Microservices Framework](https://doc.networknt.com/) 1.6.x -> 2.x
   * [Netty SocketIO](https://github.com/mrniko/netty-socketio) 1.x
@@ -26,6 +26,7 @@ metrics based on the tracing data.
   * [Grizzly](https://github.com/eclipse-ee4j/grizzly) 2.3.x -> 4.x
   * [WebSphere Liberty](https://github.com/OpenLiberty/open-liberty) 23.x
   * [Netty HTTP](https://github.com/netty/netty) 4.1.x (Optional²)
+  * [Solon](https://github.com/opensolon/solon) 2.7.x -> 2.8.x
 * HTTP Client
   * [Feign](https://github.com/OpenFeign/feign) 9.x
   * [Netflix Spring Cloud Feign](https://github.com/spring-cloud/spring-cloud-openfeign) 1.1.x -> 2.x
@@ -75,19 +76,19 @@ metrics based on the tracing data.
 * MQ
   * [RocketMQ](https://github.com/apache/rocketmq) 3.x-> 5.x
   * [RocketMQ-gRPC](http://github.com/apache/rocketmq-clients) 5.x
-  * [Kafka](http://kafka.apache.org) 0.11.0.0 -> 3.2.3
+  * [Kafka](http://kafka.apache.org) 0.11.0.0 -> 3.7.1
   * [Spring-Kafka](https://github.com/spring-projects/spring-kafka) Spring Kafka Consumer 1.3.x -> 2.3.x (2.0.x and 2.1.x not tested and not recommended by [the official document](https://spring.io/projects/spring-kafka))
   * [ActiveMQ](https://github.com/apache/activemq) 5.10.0 -> 5.15.4
   * [RabbitMQ](https://www.rabbitmq.com/) 3.x-> 5.x
   * [Pulsar](http://pulsar.apache.org) 2.2.x -> 2.9.x
-  * [NATS](https://github.com/nats-io/nats.java) 2.14.x -> 2.15.x
+  * [NATS](https://github.com/nats-io/nats.java) 2.14.x -> 2.16.5
   * [ActiveMQ-Artemis](https://github.com/apache/activemq) 2.30.0 -> 2.31.2
   * Aliyun ONS 1.x (Optional¹)
 * NoSQL
   * [aerospike](https://github.com/aerospike/aerospike-client-java) 3.x -> 6.x
   * Redis
     * [Jedis](https://github.com/xetorthio/jedis) 2.x-4.x
-    * [Redisson](https://github.com/redisson/redisson) Easy Java Redis client 3.5.2+
+    * [Redisson](https://github.com/redisson/redisson) Easy Java Redis client 3.5.0 -> 3.30.0 
     * [Lettuce](https://github.com/lettuce-io/lettuce-core) 5.x
   * [MongoDB Java Driver](https://github.com/mongodb/mongo-java-driver) 2.13-2.14, 3.4.0-3.12.7, 4.0.0-4.1.0
   * Memcached Client
@@ -98,7 +99,7 @@ metrics based on the tracing data.
     * [transport-client](https://github.com/elastic/elasticsearch/tree/v6.2.3/client/transport) 6.2.3-6.8.4
     * [transport-client](https://github.com/elastic/elasticsearch/tree/7.0/client/transport) 7.0.0-7.5.2
     * [rest-high-level-client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/6.7/index.html) 6.7.1-6.8.4
-    * [rest-high-level-client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/7.0/java-rest-high.html) 7.0.0-7.5.2
+    * [rest-high-level-client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/7.0/java-rest-high.html) 7.x
   * [Solr](https://github.com/apache/solr/)
     * [SolrJ](https://github.com/apache/solr/tree/main/solr/solrj) 7.x
   * [Cassandra](https://github.com/apache/cassandra) 3.x
@@ -120,7 +121,7 @@ metrics based on the tracing data.
 * Scheduler
   * [Elastic Job](https://github.com/elasticjob/elastic-job) 2.x
   * [Apache ShardingSphere-Elasticjob](https://github.com/apache/shardingsphere-elasticjob) 3.x
-  * [Spring @Scheduled](https://github.com/spring-projects/spring-framework) 3.1+
+  * [Spring @Scheduled](https://github.com/spring-projects/spring-framework) 3.1.x -> 6.1.x
   * [Quartz Scheduler](https://github.com/quartz-scheduler/quartz) 2.x (Optional²)
   * [XXL Job](https://github.com/xuxueli/xxl-job) 2.x
 * OpenTracing community supported
@@ -148,6 +149,7 @@ metrics based on the tracing data.
   * [Apache Commons DBCP](https://github.com/apache/commons-dbcp) 2.x
   * [Alibaba Druid](https://github.com/alibaba/druid) 1.x
   * [HikariCP](https://github.com/brettwooldridge/HikariCP) 3.x -> 4.x
+  * [C3P0](https://github.com/swaldman/c3p0) 0.9.0 -> 0.10.0
 * Logging Framework
   * [log4j](https://github.com/apache/log4j) 2.x
   * [log4j2](https://github.com/apache/logging-log4j2) 1.2.x
@@ -166,6 +168,28 @@ The meter plugin provides the advanced metrics collections, which are not a part
   * [Dubbo](https://github.com/apache/dubbo) 2.5.x -> 2.7.x
   * [Jetty](https://github.com/eclipse/jetty.project) 9.1.x -> 11.x
   * [Grizzly](https://github.com/eclipse-ee4j/grizzly) 2.3.x -> 4.x
+* Connection Pool
+  * Supported JDBC drviers
+    * [MySQL](https://www.mysql.com/)
+    * [Oracle](https://www.oracle.com/)
+    * [H2](https://h2database.com/html/main.html)
+    * [PostgreSQL](https://www.postgresql.org/)
+    * [MariaDB](https://mariadb.org/)
+    * [SQL Server](https://www.microsoft.com/en-us/sql-server/)
+    * [Apache Kylin](https://kylin.apache.org/)
+    * [Impala](https://impala.apache.org/)
+    * [ClickHouse](https://clickhouse.com/)
+    * [Derby](https://db.apache.org/derby/)
+    * [SQLite](https://www.sqlite.org/index.html)
+    * [DB2](https://www.ibm.com/products/db2/database)
+    * Sybase
+    * [OceanBase](https://www.oceanbase.com/)
+  * Supported Connection Pool Frameworks
+    * [Apache Commons DBCP](https://github.com/apache/commons-dbcp) 2.x
+    * [Alibaba Druid](https://github.com/alibaba/druid) 1.x
+    * [HikariCP](https://github.com/brettwooldridge/HikariCP) 3.x -> 4.x    
+    * [C3P0](https://github.com/swaldman/c3p0) 0.9.0 -> 0.10.0
+  
 ___
 ¹Due to license incompatibilities/restrictions these plugins are hosted and released in 3rd part repository,
  go to [SkyAPM java plugin extension repository](https://github.com/SkyAPM/java-plugin-extensions) to get these.

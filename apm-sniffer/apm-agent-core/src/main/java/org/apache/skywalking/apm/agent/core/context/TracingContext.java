@@ -43,6 +43,7 @@ import org.apache.skywalking.apm.agent.core.logging.api.ILog;
 import org.apache.skywalking.apm.agent.core.logging.api.LogManager;
 import org.apache.skywalking.apm.agent.core.profile.ProfileStatusContext;
 import org.apache.skywalking.apm.agent.core.profile.ProfileTaskExecutionService;
+import org.apache.skywalking.apm.agent.core.so11y.AgentSo11y;
 import org.apache.skywalking.apm.util.StringUtil;
 
 import static org.apache.skywalking.apm.agent.core.conf.Config.Agent.CLUSTER;
@@ -419,6 +420,14 @@ public class TracingContext implements AbstractTracerContext {
         return primaryEndpoint.getName();
     }
 
+    @Override
+    public AbstractTracerContext forceIgnoring() {
+        for (AbstractSpan span: activeSpanStack) {
+            span.forceIgnoring();
+        }
+        return new IgnoredTracerContext(activeSpanStack.size());
+    }
+
     /**
      * Re-check current trace need profiling, encase third part plugin change the operation name.
      *
@@ -452,7 +461,12 @@ public class TracingContext implements AbstractTracerContext {
             }
 
             if (isFinishedInMainThread && (!isRunningInAsyncMode || asyncSpanCounter == 0)) {
-                TraceSegment finishedSegment = segment.finish(isLimitMechanismWorking());
+                boolean limitMechanismWorking = isLimitMechanismWorking();
+                if (limitMechanismWorking) {
+                    AgentSo11y.measureLeakedTracingContext(false);
+                }
+                AgentSo11y.measureTracingContextCompletion(false);
+                TraceSegment finishedSegment = segment.finish(limitMechanismWorking);
                 TracingContext.ListenerManager.notifyFinish(finishedSegment);
                 running = false;
             }

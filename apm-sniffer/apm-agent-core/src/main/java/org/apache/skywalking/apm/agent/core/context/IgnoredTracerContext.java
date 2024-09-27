@@ -23,6 +23,7 @@ import java.util.List;
 import org.apache.skywalking.apm.agent.core.context.trace.AbstractSpan;
 import org.apache.skywalking.apm.agent.core.context.trace.NoopSpan;
 import org.apache.skywalking.apm.agent.core.profile.ProfileStatusContext;
+import org.apache.skywalking.apm.agent.core.so11y.AgentSo11y;
 
 /**
  * The <code>IgnoredTracerContext</code> represent a context should be ignored. So it just maintains the stack with an
@@ -42,6 +43,13 @@ public class IgnoredTracerContext implements AbstractTracerContext {
 
     public IgnoredTracerContext() {
         this.stackDepth = 0;
+        this.correlationContext = new CorrelationContext();
+        this.extensionContext = new ExtensionContext();
+        this.profileStatusContext = ProfileStatusContext.createWithNone();
+    }
+
+    public IgnoredTracerContext(int stackDepth) {
+        this.stackDepth = stackDepth;
         this.correlationContext = new CorrelationContext();
         this.extensionContext = new ExtensionContext();
         this.profileStatusContext = ProfileStatusContext.createWithNone();
@@ -109,6 +117,7 @@ public class IgnoredTracerContext implements AbstractTracerContext {
     public boolean stopSpan(AbstractSpan span) {
         stackDepth--;
         if (stackDepth == 0) {
+            AgentSo11y.measureTracingContextCompletion(true);
             ListenerManager.notifyFinish(this);
         }
         return stackDepth == 0;
@@ -132,6 +141,11 @@ public class IgnoredTracerContext implements AbstractTracerContext {
     @Override
     public String getPrimaryEndpointName() {
         return null;
+    }
+
+    @Override
+    public AbstractTracerContext forceIgnoring() {
+        return this;
     }
 
     public static class ListenerManager {
